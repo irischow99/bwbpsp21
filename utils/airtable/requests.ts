@@ -88,6 +88,11 @@ export async function getUser(user: UserRecord, cached = false): Promise<UserRec
     graduated: true,
   };
 
+  // Check if username and password match testUser
+  if (!user || !(testUser.uname == user.uname && testUser.password == user.password)) {
+    return null;
+  }
+
   return testUser;
 
   // FOR THOSE WHO ARE INTERESTED IN HOW IT'S ACTUALLY IMPLEMENTED
@@ -106,6 +111,7 @@ export async function getUser(user: UserRecord, cached = false): Promise<UserRec
   };
 
   const users = await fetch<UserRecord>(params);
+  console.log("Users is" + users)
   return users.length > 0 ? users[0] : null;
 }
 
