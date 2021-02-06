@@ -111,7 +111,6 @@ export async function getUser(user: UserRecord, cached = false): Promise<UserRec
   };
 
   const users = await fetch<UserRecord>(params);
-  console.log("Users is" + users)
   return users.length > 0 ? users[0] : null;
 }
 
